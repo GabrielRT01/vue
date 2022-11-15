@@ -1,6 +1,6 @@
 <script>
-import { useRouter } from 'vue-router';
-const router = useRouter();
+import { router } from '../router';
+import { routes } from '../routes';
 
 export default {
     data() {
@@ -9,8 +9,8 @@ export default {
         }
     },
     methods: {
-        go(){
-            router.push({ path: '/' })
+        go() {
+            router.push({ name: "blog" })
         }
     }
 };
@@ -31,13 +31,13 @@ export default {
                         <a class="nav-link active" aria-current="page" v-on:click="go()">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                        <a class="nav-link" @click="go()">Link</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link disabled">Disabled</a>
                     </li>
                     <li class="nav-item">
-                        <!-- <router-link to="/">Go to Home</router-link> -->
+                        <router-link to='/blog' class="btn btn-success">Go to Home</router-link>
                     </li>
                 </ul>
                 <form class="d-flex" role="search">
