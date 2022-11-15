@@ -1,13 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div id="app"> </div>
-    <script src="{{ mix('js/app.js') }}" type="text/javascript"></script> 
- </body>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>Laravel Vue</title>
+
+        <!-- Scripts -->
+        
+        @vite('resources/js/app.js')
+
+        <!-- Fonts -->
+
+        <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+        <!-- styles -->
+        <style>
+            body {
+                font-family: 'Nunito', sans-serif;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app"> 
+
+        </div>
+    </body>
 </html>

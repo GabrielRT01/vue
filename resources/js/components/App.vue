@@ -1,15 +1,14 @@
-<template>
-    <div>
-        <h1> Hi there! </h1>
-    </div>
-</template>
-
 <script>
     export default {
         data() {
             return {
-                message: 'Hello World'
+                message: 'This is my message'
             }
         }
     };
 </script>
+
+<template>
+        <h1> Hi there! </h1>
+        {{message}}
+</template>
