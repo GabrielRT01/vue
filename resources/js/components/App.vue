@@ -37,7 +37,7 @@ export default {
                         <a class="nav-link disabled">Disabled</a>
                     </li>
                     <li class="nav-item">
-                        <router-link to="/">Go to Home</router-link>
+                        <!-- <router-link to="/">Go to Home</router-link> -->
                     </li>
                 </ul>
                 <form class="d-flex" role="search">
