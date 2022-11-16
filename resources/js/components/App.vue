@@ -10,7 +10,7 @@ export default {
     },
     methods: {
         go() {
-            router.push({ name: "blog" })
+            router.push({ name: "new" })
         }
     }
 };
@@ -18,7 +18,7 @@ export default {
 </script>
 
 <template>
-    <nav class="navbar navbar-expand-lg bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -31,13 +31,13 @@ export default {
                         <a class="nav-link active" aria-current="page" v-on:click="go()">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" @click="go()">Link</a>
+                        <a class="nav-link" @click="go()">Blog</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link disabled">Disabled</a>
+                        <a class="nav-link">Contacto</a>
                     </li>
                     <li class="nav-item">
-                        <router-link to='/blog' class="btn btn-success">Go to Home</router-link>
+                        <router-link to='/blog' class="btn btn-success">Log in</router-link>
                     </li>
                 </ul>
                 <form class="d-flex" role="search">
@@ -47,4 +47,5 @@ export default {
             </div>
         </div>
     </nav>
+    <br>
 </template>

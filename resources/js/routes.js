@@ -8,26 +8,26 @@ export const routes = [
     {
         name: 'home',
         path: '/',
-        component: Home
+        component: Home,
     },
     {
         name: 'blog',
         path: '/blog',
-        component: Blog
+        component: Blog,
     },
     {
         name: 'crearEntrada',
         path: '/new',
-        component: Crear
+        component: Crear,
     },
     {
         name: 'editarEntrada',
         path: '/edit/:id',
-        component: Editar
+        component: Editar,
     },
     {
         name: 'verEntrada',
         path: '/watch',
-        component: Leer
+        component: Leer,
     },
 ]

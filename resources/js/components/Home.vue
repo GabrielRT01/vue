@@ -4,5 +4,5 @@
 
 <template>
     <App></App>
-    <h3> Aquí va el resto</h3>
+    <h3> ¡Bienvenido! </h3>
 </template>

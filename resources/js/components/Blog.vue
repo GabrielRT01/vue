@@ -1,37 +1,73 @@
+<script setup>
+    import axios from 'axios';
+    import App from './App.vue';
+</script>
+
+<script>
+export default {
+    name: "blogs",
+    data() {
+        return {
+            blogs: []
+        }
+    },
+    mounted() {
+        this.showBlogs()
+    },
+    methods: {
+        showBlogs() {
+            axios.get('api/blog')
+                .then(response => {
+                    this.blogs = response.data;
+                })
+                .catch(error => {
+                    this.blogs = []
+                })
+        },
+        borrarBlog(id) {
+            axios.delete('api/blog?id=' + id)
+                .then(response => {
+                    this.blogs = response.data;
+                    console.log(response.data)
+                })
+                .catch(error => {
+                    this.blogs = []
+                })
+        }
+    }
+}
+</script>
 
 <template>
     <App></App>
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="container">
+        <div class="row g-2">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Título</th>
+                        <th scope="col">Contenido</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="blog in blogs" :key="blog.id">
+                        <td> {{ blog.id }}</td>
+                        <td> {{ blog.title }}</td>
+                        <td> {{ blog.content }}</td>
+                        <td>
+                            <!--<router-link :to='{ name: "edit", params: { id: blog.id } }' class="btn btn-info">Editar
+                            </router-link>-->
+                            <a type="button" @click="editarBlog(blog.id)" class="btn btn-warning"> Editar </a>
+                            <a type="button" @click="borrarBlog(blog.id)" class="btn btn-danger"> Borrar </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row g-2">
+            <button class="btn btn-primary btn-lg btn-block"> Añadir entrada</button>
+        </div>
+    </div>
 </template>
-<script setup>
-    import App from './App.vue';
-    console.log("Hey");
-</script>

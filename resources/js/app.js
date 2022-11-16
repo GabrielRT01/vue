@@ -9,9 +9,10 @@ import { createApp } from 'vue';
 import { router } from './router.js';
 
 import App from './components/Home.vue';
+import App2 from './components/Blog.vue';
 import VueAxios from 'vue-axios';
 import axios from 'axios';
 
-const app = createApp(App)
+const app = createApp(App2)
             .use(router)
             .mount('#app');
