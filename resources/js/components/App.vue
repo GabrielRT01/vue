@@ -1,6 +1,4 @@
 <script>
-import { router } from '../router';
-import { routes } from '../routes';
 
 export default {
     data() {
@@ -9,9 +7,12 @@ export default {
         }
     },
     methods: {
-        go() {
-            router.push({ name: "new" })
-        }
+        home() {
+            this.$router.push({ name: "home" })
+        },
+        ver() {
+            this.$router.push({ name: "blog" })
+        },
     }
 };
 
@@ -28,16 +29,17 @@ export default {
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" v-on:click="go()">Home</a>
+                        <a class="nav-link active" aria-current="page" @click="home">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" @click="go()">Blog</a>
+                        <a class="nav-link" @click="ver">Ver entradas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link">Contacto</a>
+                        <!--<a href="#" class="nav-link" @click="go()">Contacto</a>-->
+                        <!--<router-link :to='{ name: "blog" }' class="btn btn-info">Editar </router-link> -->
                     </li>
                     <li class="nav-item">
-                        <router-link to='/blog' class="btn btn-success">Log in</router-link>
+                        <a type="button" @click="go" class="btn btn-success"> Log in </a>
                     </li>
                 </ul>
                 <form class="d-flex" role="search">
@@ -47,5 +49,8 @@ export default {
             </div>
         </div>
     </nav>
+    <div>
+        <router-view></router-view>
+    </div>
     <br>
 </template>

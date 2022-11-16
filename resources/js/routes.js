@@ -16,17 +16,17 @@ export const routes = [
         component: Blog,
     },
     {
-        name: 'crearEntrada',
+        name: 'nueva',
         path: '/new',
         component: Crear,
     },
     {
-        name: 'editarEntrada',
+        name: 'editar',
         path: '/edit/:id',
         component: Editar,
     },
     {
-        name: 'verEntrada',
+        name: 'ver',
         path: '/watch',
         component: Leer,
     },

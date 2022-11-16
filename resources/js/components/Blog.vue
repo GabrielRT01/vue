@@ -1,6 +1,6 @@
 <script setup>
-    import axios from 'axios';
-    import App from './App.vue';
+import axios from 'axios';
+import App from './App.vue';
 </script>
 
 <script>
@@ -24,8 +24,8 @@ export default {
                     this.blogs = []
                 })
         },
-        borrarBlog(id) {
-            axios.delete('api/blog?id=' + id)
+        async borrarBlog(id) {
+            await axios.delete('api/blog/' + id)
                 .then(response => {
                     this.blogs = response.data;
                     console.log(response.data)
@@ -33,13 +33,21 @@ export default {
                 .catch(error => {
                     this.blogs = []
                 })
+        },
+        editar(id) {
+            this.$router.push({ name: "editar", params: { id: id } })
+        },
+        crear() {
+            this.$router.push({ name: "nueva" })
+        },
+        refrescar() {
+            this.$router.push({ name: "blog" })
         }
     }
 }
 </script>
 
 <template>
-    <App></App>
     <div class="container">
         <div class="row g-2">
             <table class="table">
@@ -57,9 +65,10 @@ export default {
                         <td> {{ blog.title }}</td>
                         <td> {{ blog.content }}</td>
                         <td>
-                            <!--<router-link :to='{ name: "edit", params: { id: blog.id } }' class="btn btn-info">Editar
+                            <!--<router-link :to='{ name: "editar", params: { id: blog.id } }' class="btn btn-info">Editar
                             </router-link>-->
-                            <a type="button" @click="editarBlog(blog.id)" class="btn btn-warning"> Editar </a>
+                            <a type="button" @click="editar(blog.id)" class="btn btn-warning"> Editar </a>
+                            &nbsp;
                             <a type="button" @click="borrarBlog(blog.id)" class="btn btn-danger"> Borrar </a>
                         </td>
                     </tr>
@@ -67,7 +76,7 @@ export default {
             </table>
         </div>
         <div class="row g-2">
-            <button class="btn btn-primary btn-lg btn-block"> Añadir entrada</button>
+            <button @click="crear()" class="btn btn-primary btn-lg btn-block"> Añadir entrada</button>
         </div>
     </div>
 </template>

@@ -1,6 +1,6 @@
 <script setup>
-    import axios from 'axios';
-    import App from './App.vue';
+import axios from 'axios';
+import App from './../App.vue';
 </script>
 
 <script>
@@ -8,30 +8,42 @@ export default {
     name: "blog",
     data() {
         return {
-            blog: []
+            blog: {
+                title: "",
+                content: ""
+            }
         }
     },
-    mounted() {
-        this.showBlogs()
+    created() {
+        this.mostrarBlog();
     },
     methods: {
-        showBlogs() {
-            axios.get('api/blog')
+         mostrarBlog() {
+                console.log(this.$route)  
+             //axios.get(`/api/blog/${this.$route.params.id}`)
+
+             axios.get('/api/blog/' + this.$route.params.id)
                 .then(response => {
-                    this.blogs = response.data;
+                    const { title, content } = response.data
+                    this.blog.title = title; 
+                    this.blog.content = content;
+                })
+                .catch(error=>{
+                    console.log(error)
+                })
+        }, 
+        async update() {
+            this.blog.title = document.getElementById("title").value;
+            this.blog.content = document.getElementById("content").value;
+
+            await axios.put(`/api/blog/${this.$route.params.id}`, this.blog)
+                .then(response => {
+                    this.$router.push({
+                        name: 'blog'
+                    })
                 })
                 .catch(error => {
-                    this.blogs = []
-                })
-        },
-        borrarBlog(id) {
-            axios.delete('api/blog?id=' + id)
-                .then(response => {
-                    this.blogs = response.data;
-                    console.log(response.data)
-                })
-                .catch(error => {
-                    this.blogs = []
+                    console.log(error)
                 })
         }
     }
@@ -39,29 +51,27 @@ export default {
 </script>
 
 <template>
-    <App></App>
     <div class="container">
         <div class="row g-2">
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">ID</th>
                         <th scope="col">Título</th>
                         <th scope="col">Contenido</th>
-                        <th scope="col">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td> {{ blog.id }}</td>
-                        <td> {{ blog.title }}</td>
-                        <td> {{ blog.content }}</td>
                         <td>
-                            <a type="button" @click="editarBlog(blog.id)" class="btn btn-warning"> Terminar </a>
+                            <textarea name="title" id="title" cols="30" rows="10" v-model="blog.title"></textarea>
+                        </td>
+                        <td>
+                            <textarea name="content" id="content" cols="30" rows="10" v-model="blog.content"></textarea>
                         </td>
                     </tr>
                 </tbody>
             </table>
+            <button @click="update()" class="btn btn-warning btn-lg btn-block"> Terminar </button>
         </div>
     </div>
 </template>

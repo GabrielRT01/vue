@@ -8,11 +8,12 @@ import 'bootstrap-vue-3/dist/bootstrap-vue-3.css';
 import { createApp } from 'vue';
 import { router } from './router.js';
 
-import App from './components/Home.vue';
+import App from './components/App.vue';
 import App2 from './components/Blog.vue';
+import App3 from './components/Blog/Editar.vue';
 import VueAxios from 'vue-axios';
 import axios from 'axios';
 
-const app = createApp(App2)
+const app = createApp(App)
             .use(router)
             .mount('#app');
