@@ -18,20 +18,20 @@ export default {
         this.mostrarBlog();
     },
     methods: {
-         mostrarBlog() {
-                console.log(this.$route)  
-             //axios.get(`/api/blog/${this.$route.params.id}`)
+        mostrarBlog() {
+            console.log(this.$route)
+            //axios.get(`/api/blog/${this.$route.params.id}`)
 
-             axios.get('/api/blog/' + this.$route.params.id)
+            axios.get('/api/blog/' + this.$route.params.id)
                 .then(response => {
                     const { title, content } = response.data
-                    this.blog.title = title; 
+                    this.blog.title = title;
                     this.blog.content = content;
                 })
-                .catch(error=>{
+                .catch(error => {
                     console.log(error)
                 })
-        }, 
+        },
         async update() {
             this.blog.title = document.getElementById("title").value;
             this.blog.content = document.getElementById("content").value;
@@ -53,24 +53,27 @@ export default {
 <template>
     <div class="container">
         <div class="row g-2">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Título</th>
-                        <th scope="col">Contenido</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <textarea name="title" id="title" cols="30" rows="10" v-model="blog.title"></textarea>
-                        </td>
-                        <td>
-                            <textarea name="content" id="content" cols="30" rows="10" v-model="blog.content"></textarea>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="col-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Título</th>
+                            <th scope="col">Contenido</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <textarea name="title" id="title" cols="30" rows="10" v-model="blog.title"></textarea>
+                            </td>
+                            <td>
+                                <textarea name="content" id="content" cols="30" rows="10"
+                                    v-model="blog.content"></textarea>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
             <button @click="update()" class="btn btn-warning btn-lg btn-block"> Terminar </button>
         </div>
     </div>
