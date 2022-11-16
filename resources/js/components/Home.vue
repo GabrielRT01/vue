@@ -1,9 +1,5 @@
-<script setup>
-import App from './App.vue';
-</script>
-
 <template>
-    <h3> ¡Bienvenido! </h3>
+    <h3 style="text-align: center;"> ¡Bienvenido! </h3>
     <div class="container">
         <div class="row">
             <div class="col-12">
