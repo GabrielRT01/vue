@@ -43,7 +43,7 @@ export default {
 </script>
 
 <template>
-    <div class="container">
+    <div class="container-fluid mycontainer">
         <div class="row g-2">
             <div class="table-responsive">
                 <table class="table">

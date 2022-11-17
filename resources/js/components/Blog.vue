@@ -45,7 +45,7 @@ export default {
 </script>
 
 <template>
-    <div class="container-fluid" style="width: 95%">
+    <div class="container-fluid mycontainer">
         <div class="row g-6">
             <div class="table-responsive text-center">
                 <table class="table">

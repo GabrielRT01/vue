@@ -34,7 +34,7 @@ export default {
 </script>
 
 <template>
-    <div class="container">
+    <div class="container-fluid mycontainer">
         <div class="row g-2">
             <div class="table-responsive">
                 <table class="table">
@@ -56,7 +56,7 @@ export default {
                     </tbody>
                 </table>
             </div>
-            <button @click="create()" class="btn btn-primary btn-lg btn-block"> Crear </button>
+            <button @click="create()" class="btn btn-primary btn-lg btn-block"> Añadir publicación </button>
         </div>
     </div>
 </template>
