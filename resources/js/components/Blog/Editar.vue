@@ -9,11 +9,11 @@ export default {
             }
         }
     },
-    created() {
-        this.mostrarBlog();
+    mounted() {
+        this.show();
     },
     methods: {
-        mostrarBlog() {
+        show() {
             axios.get('/api/blog/' + this.$route.params.id)
                 .then(response => {
                     const { title, content } = response.data

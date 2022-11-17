@@ -7,19 +7,20 @@ export default {
         }
     },
     mounted() {
-        this.showBlogs();
+        this.show();
     },
     methods: {
-        showBlogs() {
+        show() {
             axios.get('api/blog')
                 .then(response => {
                     this.blogs = response.data;
                 })
                 .catch(error => {
-                    this.blogs = []
+                    this.blogs = [];
+                    console.log(error);
                 })
         },
-        borrarBlog(id) {
+        delete(id) {
             if (!confirm("¿Desea eliminar la entrada?")) return;
 
             axios.delete('api/blog/' + id)
@@ -30,22 +31,22 @@ export default {
                     this.blogs = [];
                 })
                 .finally(()=>{
-                    this.showBlogs();
+                    this.show();
                 })
         },
-        editar(id) {
+        edit(id) {
             this.$router.push({ name: "editar", params: { id: id } })
         },
-        crear() {
-            this.$router.push({ name: "nueva" })
+        create() {
+            this.$router.push({ name: "nueva" }) 
         }
     }
 }
 </script>
 
 <template>
-    <div class="container">
-        <div class="row g-2">
+    <div class="container-fluid" style="width: 95%">
+        <div class="row g-6">
             <div class="table-responsive text-center">
                 <table class="table">
                     <thead>
@@ -53,7 +54,7 @@ export default {
                             <th scope="col">Nº</th>
                             <th scope="col">Título</th>
                             <th scope="col">Contenido</th>
-                            <th scope="col">Acciones</th>
+                            <th scope="col" colspan="2">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -62,9 +63,14 @@ export default {
                             <td> {{ blog.title }}</td>
                             <td> {{ blog.content }}</td>
                             <td>
-                                <a type="button" @click="editar(blog.id)" class="btn btn-warning"> Editar </a>
-                                &nbsp;
-                                <a type="button" @click="borrarBlog(blog.id)" class="btn btn-danger"> Borrar </a>
+                                <a type="button" @click="edit(blog.id)" class="btn btn-warning"> 
+                                    Editar 
+                                </a>
+                            </td> 
+                            <td>   
+                                <a type="button" @click="this.delete(blog.id)" class="btn btn-danger"> 
+                                    Borrar 
+                                </a>
                             </td>
                         </tr>
                     </tbody>
@@ -72,7 +78,7 @@ export default {
             </div>
         </div>
         <div class="row g-2">
-            <button @click="crear()" class="btn btn-primary btn-lg btn-block"> Añadir entrada</button>
+            <button @click="create()" class="btn btn-primary btn-lg btn-block"> Añadir entrada</button>
         </div>
     </div>
 </template>

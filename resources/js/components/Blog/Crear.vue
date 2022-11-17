@@ -10,7 +10,7 @@ export default {
         }
     },
     methods: {
-        crear() {
+        create() {
             this.blog.title = document.getElementById("title").value;
             this.blog.content = document.getElementById("content").value;
 
@@ -56,7 +56,7 @@ export default {
                     </tbody>
                 </table>
             </div>
-            <button @click="crear()" class="btn btn-primary btn-lg btn-block"> Crear </button>
+            <button @click="create()" class="btn btn-primary btn-lg btn-block"> Crear </button>
         </div>
     </div>
 </template>
