@@ -16,7 +16,6 @@ export default {
                     this.blogs = response.data;
                 })
                 .catch(error => {
-                    this.blogs = [];
                     console.log(error);
                 })
         },
@@ -28,17 +27,11 @@ export default {
                     this.blogs = response.data;
                 })
                 .catch(error => {
-                    this.blogs = [];
+                    console.log(error)
                 })
-                .finally(()=>{
+                .finally(() => {
                     this.show();
                 })
-        },
-        edit(id) {
-            this.$router.push({ name: "editar", params: { id: id } })
-        },
-        create() {
-            this.$router.push({ name: "nueva" }) 
         }
     }
 }
@@ -63,13 +56,13 @@ export default {
                             <td> {{ blog.title }}</td>
                             <td> {{ blog.content }}</td>
                             <td>
-                                <a type="button" @click="edit(blog.id)" class="btn btn-warning"> 
-                                    Editar 
-                                </a>
-                            </td> 
-                            <td>   
-                                <a type="button" @click="this.delete(blog.id)" class="btn btn-danger"> 
-                                    Borrar 
+                                <router-link :to="'/edit/' + blog.id" type="button" class="btn btn-warning">
+                                    Editar
+                                </router-link>
+                            </td>
+                            <td>
+                                <a type="button" @click="this.delete(blog.id)" class="btn btn-danger">
+                                    Borrar
                                 </a>
                             </td>
                         </tr>
@@ -78,7 +71,9 @@ export default {
             </div>
         </div>
         <div class="row g-2">
-            <button @click="create()" class="btn btn-primary btn-lg btn-block"> Añadir entrada</button>
+            <router-link to="/new" type="button" class="btn btn-primary btn-lg btn-block">
+                Añadir entrada
+            </router-link>
         </div>
     </div>
 </template>

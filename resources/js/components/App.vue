@@ -1,14 +1,3 @@
-<script>
-
-export default {
-    methods: {
-        changePath(path) {
-            this.$router.push({ name: path })
-        }
-    }
-};
-
-</script>
 
 <template>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -21,10 +10,10 @@ export default {
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" @click="changePath('home')">Home</a>
+                        <router-link to="/" class="nav-link"> Home </router-link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" @click="changePath('blog')">Ver entradas</a>
+                        <router-link to="/blog" class="nav-link"> Ver blog </router-link>
                     </li>
                     <li class="nav-item">
                         <a type="button" class="btn btn-success"> Log in </a>

@@ -5,7 +5,7 @@ export default {
         return {
             blog: {
                 title: "",
-                content: ""
+                content: "",
             },
             alert: 
                 '<div class="alert alert-warning alert-dismissible fade show" role="alert">' +
