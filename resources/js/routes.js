@@ -2,7 +2,6 @@ const Home = () => import('./components/Home.vue')
 const Blog = () => import('./components/Blog.vue')
 const Crear = () => import('./components/Blog/Crear.vue')
 const Editar = () => import('./components/Blog/Editar.vue')
-const Leer = () => import('./components/Blog/Leer.vue')
 
 export const routes = [
     {
@@ -24,10 +23,5 @@ export const routes = [
         name: 'editar',
         path: '/edit/:id',
         component: Editar,
-    },
-    {
-        name: 'ver',
-        path: '/watch',
-        component: Leer,
-    },
+    }
 ]

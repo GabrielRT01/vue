@@ -1,7 +1,3 @@
-<script setup>
-import axios from 'axios';
-</script>
-
 <script>
 export default {
     name: "blogs",
@@ -11,7 +7,7 @@ export default {
         }
     },
     mounted() {
-        this.showBlogs()
+        this.showBlogs();
     },
     methods: {
         showBlogs() {
@@ -23,15 +19,18 @@ export default {
                     this.blogs = []
                 })
         },
-        async borrarBlog(id) {
+        borrarBlog(id) {
             if (!confirm("¿Desea eliminar la entrada?")) return;
-            await axios.delete('api/blog/' + id)
+
+            axios.delete('api/blog/' + id)
                 .then(response => {
                     this.blogs = response.data;
-                    console.log(response.data)
                 })
                 .catch(error => {
-                    this.blogs = []
+                    this.blogs = [];
+                })
+                .finally(()=>{
+                    this.showBlogs();
                 })
         },
         editar(id) {
@@ -39,9 +38,6 @@ export default {
         },
         crear() {
             this.$router.push({ name: "nueva" })
-        },
-        refrescar() {
-            this.$router.push({ name: "blog" })
         }
     }
 }
@@ -50,7 +46,7 @@ export default {
 <template>
     <div class="container">
         <div class="row g-2">
-            <div class="col-12">
+            <div class="table-responsive text-center">
                 <table class="table">
                     <thead>
                         <tr>
@@ -66,8 +62,6 @@ export default {
                             <td> {{ blog.title }}</td>
                             <td> {{ blog.content }}</td>
                             <td>
-                                <!--<router-link :to='{ name: "editar", params: { id: blog.id } }' class="btn btn-info">Editar
-                            </router-link>-->
                                 <a type="button" @click="editar(blog.id)" class="btn btn-warning"> Editar </a>
                                 &nbsp;
                                 <a type="button" @click="borrarBlog(blog.id)" class="btn btn-danger"> Borrar </a>

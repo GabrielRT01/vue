@@ -1,7 +1,3 @@
-<script setup>
-    import axios from 'axios';
-</script>
-
 <script>
 export default {
     name: "blog",
@@ -17,6 +13,10 @@ export default {
         crear() {
             this.blog.title = document.getElementById("title").value;
             this.blog.content = document.getElementById("content").value;
+
+            if (!this.blog.title || !this.blog.content) {
+                return;
+            }
 
             axios.post(`/api/blog`, this.blog)
                 .then(response => {
@@ -36,7 +36,7 @@ export default {
 <template>
     <div class="container">
         <div class="row g-2">
-            <div class="col-12">
+            <div class="table-responsive">
                 <table class="table">
                     <thead>
                         <tr>
@@ -47,10 +47,10 @@ export default {
                     <tbody>
                         <tr>
                             <td>
-                                <textarea name="title" id="title" cols="30" rows="10"></textarea>
+                                <input class="form-control form-control-lg" id="title" type="text" placeholder="..." maxlength="100">
                             </td>
                             <td>
-                                <textarea name="content" id="content" cols="30" rows="10"></textarea>
+                                <input class="form-control form-control-lg" id="content" type="text" placeholder="..." maxlength="255">
                             </td>
                         </tr>
                     </tbody>

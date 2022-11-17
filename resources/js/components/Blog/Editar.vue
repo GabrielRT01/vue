@@ -1,7 +1,3 @@
-<script setup>
-    import axios from 'axios';
-</script>
-
 <script>
 export default {
     name: "blog",
@@ -18,9 +14,6 @@ export default {
     },
     methods: {
         mostrarBlog() {
-            console.log(this.$route)
-            //axios.get(`/api/blog/${this.$route.params.id}`)
-
             axios.get('/api/blog/' + this.$route.params.id)
                 .then(response => {
                     const { title, content } = response.data
@@ -31,11 +24,11 @@ export default {
                     console.log(error)
                 })
         },
-        async update() {
+        update() {
             this.blog.title = document.getElementById("title").value;
             this.blog.content = document.getElementById("content").value;
 
-            await axios.put(`/api/blog/${this.$route.params.id}`, this.blog)
+            axios.put(`/api/blog/${this.$route.params.id}`, this.blog)
                 .then(response => {
                     this.$router.push({
                         name: 'blog'
@@ -52,7 +45,7 @@ export default {
 <template>
     <div class="container">
         <div class="row g-2">
-            <div class="col-12">
+            <div class="table-responsive">
                 <table class="table">
                     <thead>
                         <tr>
@@ -63,11 +56,10 @@ export default {
                     <tbody>
                         <tr>
                             <td>
-                                <textarea name="title" id="title" cols="30" rows="10" v-model="blog.title"></textarea>
+                                <input class="form-control form-control-lg" id="title" type="text" placeholder="..." maxlength="100" v-model="blog.title">
                             </td>
                             <td>
-                                <textarea name="content" id="content" cols="30" rows="10"
-                                    v-model="blog.content"></textarea>
+                                <input class="form-control form-control-lg" id="content" type="text" placeholder="..." maxlength="255" v-model="blog.content">
                             </td>
                         </tr>
                     </tbody>
