@@ -6,7 +6,11 @@ export default {
             blog: {
                 title: "",
                 content: ""
-            }
+            },
+            alert: 
+                '<div class="alert alert-warning alert-dismissible fade show" role="alert">' +
+                    'Por favor, rellene los campos.' + 
+                '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </div>',
         }
     },
     methods: {
@@ -15,6 +19,7 @@ export default {
             this.blog.content = document.getElementById("content").value;
 
             if (!this.blog.title || !this.blog.content) {
+                document.getElementById("alerta").innerHTML = this.alert;
                 return;
             }
 
@@ -56,6 +61,7 @@ export default {
                     </tbody>
                 </table>
             </div>
+            <div id="alerta"> </div>
             <button @click="create()" class="btn btn-primary btn-lg btn-block"> Añadir publicación </button>
         </div>
     </div>

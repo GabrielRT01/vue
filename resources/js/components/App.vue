@@ -37,8 +37,8 @@ export default {
             </div>
         </div>
     </nav>
+    <br>
     <div>
         <router-view></router-view>
-    </div>
-    <br>
+    </div> 
 </template>

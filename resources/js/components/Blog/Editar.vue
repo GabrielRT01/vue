@@ -6,7 +6,11 @@ export default {
             blog: {
                 title: "",
                 content: ""
-            }
+            },
+            alert: 
+                '<div class="alert alert-warning alert-dismissible fade show" role="alert">' +
+                    'Por favor, rellene los campos.' + 
+                '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </div>',
         }
     },
     mounted() {
@@ -27,6 +31,11 @@ export default {
         update() {
             this.blog.title = document.getElementById("title").value;
             this.blog.content = document.getElementById("content").value;
+
+            if (!this.blog.title || !this.blog.content) {
+                document.getElementById("alerta").innerHTML = this.alert;
+                return;
+            }
 
             axios.put(`/api/blog/${this.$route.params.id}`, this.blog)
                 .then(response => {
@@ -65,6 +74,7 @@ export default {
                     </tbody>
                 </table>
             </div>
+            <div id="alerta"> </div>
             <button @click="update()" class="btn btn-warning btn-lg btn-block"> Terminar </button>
         </div>
     </div>
