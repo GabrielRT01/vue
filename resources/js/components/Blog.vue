@@ -56,7 +56,7 @@ export default {
                             <td> {{ blog.title }}</td>
                             <td> {{ blog.content }}</td>
                             <td>
-                                <router-link :to="'/edit/' + blog.id" type="button" class="btn btn-warning">
+                                <router-link :to="'/form/' + blog.id" type="button" class="btn btn-warning">
                                     Editar
                                 </router-link>
                             </td>
@@ -71,7 +71,7 @@ export default {
             </div>
         </div>
         <div class="row g-2">
-            <router-link to="/new" type="button" class="btn btn-primary btn-lg btn-block">
+            <router-link to="/form" type="button" class="btn btn-primary btn-lg btn-block">
                 Añadir entrada
             </router-link>
         </div>

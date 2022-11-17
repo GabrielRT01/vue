@@ -1,5 +1,5 @@
 <script setup>
-    import Home from './Home.vue';
+    import Example from './Example.vue';
 </script>
 
 <template>
@@ -30,7 +30,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <Home></Home>
+                        <Example mensaje="Hola"></Example>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
