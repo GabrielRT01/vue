@@ -1,14 +1,20 @@
 <script>
+import ModalForm from './Blog/ModalForm.vue';
+
 export default {
     name: "blogs",
     data() {
         return {
-            blogs: []
+            blogs: [],
+            id: -1
         }
+    },
+    components: { 
+        ModalForm,
     },
     mounted() {
         this.show();
-    },
+    },  
     methods: {
         show() {
             axios.get('api/blog')
@@ -56,6 +62,12 @@ export default {
                             <td> {{ blog.title }}</td>
                             <td> {{ blog.content }}</td>
                             <td>
+                                <button type="button" class="btn btn-warning" @click="this.id = blog.id"
+                                    data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    Edit(M)
+                                </button>
+                            </td>
+                            <td>
                                 <router-link :to="'/form/' + blog.id" type="button" class="btn btn-warning">
                                     Editar
                                 </router-link>
@@ -71,9 +83,17 @@ export default {
             </div>
         </div>
         <div class="row g-2">
+            <div class="col-6"></div>
+            <div class="col-6"></div>
+            <button type="button" class="btn btn-primary btn-lg btn-block" @click="this.id = -1" data-bs-toggle="modal"
+                data-bs-target="#exampleModal">
+                Añadir entrada (Modal)
+            </button>
             <router-link to="/form" type="button" class="btn btn-primary btn-lg btn-block">
                 Añadir entrada
             </router-link>
         </div>
+
+        <ModalForm v-bind:id="this.id"></ModalForm>
     </div>
 </template>

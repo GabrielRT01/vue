@@ -1,6 +1,6 @@
 const Home = () => import('./components/Home.vue')
 const Blog = () => import('./components/Blog.vue')
-const Form = () => import('./components/Blog/Form.vue')
+const BlogForm = () => import('./components/Blog/BlogForm.vue')
 const NotFoundComponent = () => import('./components/NotFound.vue')
 
 export const routes = [
@@ -17,7 +17,7 @@ export const routes = [
     {
         name: 'form',
         path: '/form/:id?',
-        component: Form,
+        component: BlogForm,
     },
     {
         path: "/:catchAll(.*)", 

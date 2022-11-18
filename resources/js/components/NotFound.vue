@@ -5,16 +5,22 @@ import Modal from './Modal.vue';
 export default {
     data() {
         return {
-            mensaje: ""
+            mensaje: {
+                color: "white"
+            }
         }
     },
     methods: {
-        setMessage(m) {
-            this.mensaje = m;
+        setColor() {
+            this.mensaje.color = document.getElementById("app").style.backgroundColor.valueOf();
         },
-        childMessageReceived(arg1) {
-            console.log("Mensaje de mi hijo: " + arg1);
+        childMessageReceived(color) {
+            this.setColor(color);
+            document.getElementById("app").style.backgroundColor = color;
         },
+        probarVuex() {
+            this.$store.commit('increment');
+        }
 
     },
     components: {
@@ -39,13 +45,19 @@ export default {
         <!-- Buttons trigger modal -->
         <br>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-            @click="setMessage('Modal A pulsado')">
-            Modal A
+            @click="setColor()">
+            Cambiar color
         </button>
-        <br><br>
+        &nbsp;
+        <!--
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-            @click="setMessage('Modal B pulsado')">
-            Modal B
+            @click="setColor('#F9E79F')">
+            Claro
+        </button>
+        -->
+        <br><br>
+        <button type="button" class="btn btn-danger" @click="probarVuex()">
+            Incrementar: {{ this.$store.state.count }}
         </button>
 
         <Modal v-bind:mensaje="this.mensaje" v-on:messageFromChild="childMessageReceived"></Modal>
