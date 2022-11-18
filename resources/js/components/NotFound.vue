@@ -1,8 +1,7 @@
-<script setup>
-    import Modal from './Modal.vue';
-</script>
-
 <script>
+
+import Modal from './Modal.vue';
+
 export default {
     data() {
         return {
@@ -12,7 +11,14 @@ export default {
     methods: {
         setMessage(m) {
             this.mensaje = m;
-        }
+        },
+        childMessageReceived(arg1) {
+            console.log("Mensaje de mi hijo: " + arg1);
+        },
+
+    },
+    components: {
+        Modal,
     }
 }
 </script>
@@ -30,16 +36,18 @@ export default {
                 </router-link>
             </div>
         </div>
-        <!-- Button trigger modal -->
+        <!-- Buttons trigger modal -->
         <br>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="setMessage('Modal A pulsado')">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+            @click="setMessage('Modal A pulsado')">
             Modal A
         </button>
         <br><br>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="setMessage('Modal B pulsado')">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+            @click="setMessage('Modal B pulsado')">
             Modal B
         </button>
 
-        <Modal v-bind:mensaje="this.mensaje"></Modal>
+        <Modal v-bind:mensaje="this.mensaje" v-on:messageFromChild="childMessageReceived"></Modal>
     </div>
 </template>

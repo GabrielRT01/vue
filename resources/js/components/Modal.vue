@@ -1,7 +1,12 @@
 <script>
 export default {
     props: {
-        mensaje: Object
+        mensaje: String
+    },
+    methods: {
+        sendMessageToParent() {
+            this.$emit("messageFromChild", "Hola padre");
+        }
     }
 }
 </script>
@@ -15,7 +20,8 @@ export default {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    {{ this.mensaje }}
+                    {{ this.mensaje }} <br>
+                    <button @click="sendMessageToParent()" class="btn btn-secondary"> Enviar mensaje a padre </button>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
