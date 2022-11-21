@@ -7,7 +7,6 @@ export default {
         return {
             blogs: [],
             id: -1,
-            reload: false
         }
     },
     components: {
@@ -41,7 +40,7 @@ export default {
                 })
         },
         modalCerrado(val) {
-            this.reload = false;
+            this.show();
         },
     }
 }
@@ -90,8 +89,8 @@ export default {
         <div class="row g-2">
             <div class="col-6"></div>
             <div class="col-6"></div>
-            <button type="button" class="btn btn-primary btn-lg btn-block" @click="this.id = -1" data-bs-toggle="modal"
-                data-bs-target="#exampleModal">
+            <button type="button" class="btn btn-primary btn-lg btn-block" @click="this.id = -1;"
+                data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Añadir entrada (Modal)
             </button>
             <router-link to="/form" type="button" class="btn btn-primary btn-lg btn-block">
@@ -99,6 +98,6 @@ export default {
             </router-link>
         </div>
 
-        <ModalForm v-bind:id="this.id" v-bind:reload="this.reload" v-on:modalCerrado="modalCerrado"></ModalForm>
+        <ModalForm v-bind:id="this.id" v-on:modalCerrado="modalCerrado"></ModalForm>
     </div>
 </template>

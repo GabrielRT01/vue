@@ -101,7 +101,7 @@ export default {
                 </table>
             </div>
             <div id="alerta"> </div>
-            <button v-if="this.goToEdit" @click="update()" class="btn btn-warning btn-lg btn-block"> Terminar </button>
+            <button v-if="this.goToEdit" @click="update()" class="btn btn-warning btn-lg btn-block"> Guardar </button>
             <button v-else @click="create()" class="btn btn-primary btn-lg btn-block"> Añadir publicación </button>
         </div>
     </div>

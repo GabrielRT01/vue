@@ -13,19 +13,14 @@ export default {
                 '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </div>',
         }
     },
-    created() {
-        this.show();
-    },
     props: {
-        id: Int8Array,
-        reload: Boolean
+        id: Number,
     },
     methods: {
         show() {
             if (this.id < 0) {
                 return;
             }
-
             axios.get('/api/blog/' + this.id)
                 .then(response => {
                     const { title, content } = response.data
@@ -53,6 +48,8 @@ export default {
                 })
                 .catch(error => {
                     console.log(error)
+                }).finally(() => {
+                    this.cerrarModal();
                 })
         },
         create() {
@@ -69,18 +66,24 @@ export default {
                     this.$router.push({
                         name: 'blog'
                     });
-                    console.log(response)
                 })
                 .catch(error => {
                     console.log(error)
                 })
+                .finally(() => {
+                    this.cerrarModal();
+                })
         },
         cerrarModal() {
             this.$emit("modalCerrado", true);
+            document.getElementById("content").value = "";
+            document.getElementById("title").value = "";
+            this.blog.title = "";
+            this.blog.content = "";
         }
     },
     watch: {
-        reload: {
+        id: {
             // the callback will be called immediately after the start of the observation
             immediate: true,
             handler (val, oldVal) {
@@ -125,13 +128,11 @@ export default {
                                 </table>
                             </div>
                             <div id="alerta"> </div>
-                            <button v-if="this.id > -1" @click="update()" class="btn btn-warning btn-lg btn-block">
-                                Terminar </button>
-                            <button v-else @click="create()" class="btn btn-primary btn-lg btn-block"> Añadir
-                                publicación </button>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="cerrarModal()"> Close </button>
+                            <button v-if="this.id > -1" @click="update()" class="btn btn-warning" data-bs-dismiss="modal"> Guardar </button>
+                            <button v-else @click="create()" class="btn btn-primary" data-bs-dismiss="modal"> Añadir publicación </button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="cerrarModal()"> Cerrar </button> 
                         </div>
                     </div>
                 </div>
