@@ -42,12 +42,12 @@ export default {
                 </router-link>
             </div>
         </div>
-        <!-- Buttons trigger modal -->
+        <!-- Buttons trigger modal 
         <br>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
             @click="setColor()">
             Cambiar color
-        </button>
+        </button>-->
         &nbsp;
         <!--
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
