@@ -1,51 +1,3 @@
-<script>
-import ModalForm from './Blog/ModalForm.vue';
-
-export default {
-    name: "blogs",
-    data() {
-        return {
-            blogs: [],
-            id: -1,
-        }
-    },
-    components: {
-        ModalForm,
-    },
-    mounted() {
-        this.show();
-    },
-    methods: {
-        show() {
-            axios.get('api/blog')
-                .then(response => {
-                    this.blogs = response.data;
-                })
-                .catch(error => {
-                    console.log(error);
-                })
-        },
-        delete(id) {
-            if (!confirm("¿Desea eliminar la entrada?")) return;
-
-            axios.delete('api/blog/' + id)
-                .then(response => {
-                    this.blogs = response.data;
-                })
-                .catch(error => {
-                    console.log(error)
-                })
-                .finally(() => {
-                    this.show();
-                })
-        },
-        modalCerrado(val) {
-            this.show();
-        },
-    }
-}
-</script>
-
 <template>
     <div class="container-fluid mycontainer">
         <div class="row g-6">
@@ -101,3 +53,51 @@ export default {
         <ModalForm v-bind:id="this.id" v-on:modalCerrado="modalCerrado"></ModalForm>
     </div>
 </template>
+
+<script>
+import ModalForm from './Blog/ModalForm.vue';
+
+export default {
+    name: "blogs",
+    data() {
+        return {
+            blogs: [],
+            id: -1,
+        }
+    },
+    components: {
+        ModalForm,
+    },
+    mounted() {
+        this.show();
+    },
+    methods: {
+        show() {
+            axios.get('api/blog')
+                .then(response => {
+                    this.blogs = response.data;
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+        },
+        delete(id) {
+            if (!confirm("¿Desea eliminar la entrada?")) return;
+
+            axios.delete('api/blog/' + id)
+                .then(response => {
+                    this.blogs = response.data;
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+                .finally(() => {
+                    this.show();
+                })
+        },
+        modalCerrado(val) {
+            this.show();
+        },
+    }
+}
+</script>

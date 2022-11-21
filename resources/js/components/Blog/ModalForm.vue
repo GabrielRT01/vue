@@ -1,3 +1,50 @@
+<template>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="container-fluid mycontainer text-center">
+            <div class="row g-2">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel"> Formulario </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" @click="cerrarModal()"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Título</th>
+                                            <th scope="col">Contenido</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <input class="form-control form-control-lg" id="title" type="text"
+                                                    placeholder="..." maxlength="100" v-model="blog.title">
+                                            </td>
+                                            <td>
+                                                <input class="form-control form-control-lg" id="content" type="text"
+                                                    placeholder="..." maxlength="255" v-model="blog.content">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div id="alerta"> </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button v-if="this.id > -1" @click="update()" class="btn btn-warning" data-bs-dismiss="modal"> Guardar </button>
+                            <button v-else @click="create()" class="btn btn-primary" data-bs-dismiss="modal"> Añadir publicación </button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="cerrarModal()"> Cerrar </button> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
 <script>
 export default {
     name: "blog",
@@ -84,7 +131,7 @@ export default {
     },
     watch: {
         id: {
-            // the callback will be called immediately after the start of the observation
+            // The callback will be called immediately after the start of the observation
             immediate: true,
             handler (val, oldVal) {
                 this.show();
@@ -93,50 +140,3 @@ export default {
     }
 }
 </script>
-
-<template>
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="container-fluid mycontainer text-center">
-            <div class="row g-2">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel"> Formulario </h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" @click="cerrarModal()"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Título</th>
-                                            <th scope="col">Contenido</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <input class="form-control form-control-lg" id="title" type="text"
-                                                    placeholder="..." maxlength="100" v-model="blog.title">
-                                            </td>
-                                            <td>
-                                                <input class="form-control form-control-lg" id="content" type="text"
-                                                    placeholder="..." maxlength="255" v-model="blog.content">
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div id="alerta"> </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button v-if="this.id > -1" @click="update()" class="btn btn-warning" data-bs-dismiss="modal"> Guardar </button>
-                            <button v-else @click="create()" class="btn btn-primary" data-bs-dismiss="modal"> Añadir publicación </button>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="cerrarModal()"> Cerrar </button> 
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</template>
