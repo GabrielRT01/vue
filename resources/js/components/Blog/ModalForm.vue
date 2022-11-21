@@ -11,20 +11,20 @@ export default {
                 '<div class="alert alert-warning alert-dismissible fade show" role="alert">' +
                 'Por favor, rellene los campos.' +
                 '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </div>',
-            //goToEdit: true,
         }
     },
-    mounted() {
+    created() {
         this.show();
     },
     props: {
-        id: Int8Array
+        id: Int8Array,
+        reload: Boolean
     },
     methods: {
         show() {
-           if (this.id < 0) {
+            if (this.id < 0) {
                 return;
-           }
+            }
 
             axios.get('/api/blog/' + this.id)
                 .then(response => {
@@ -74,6 +74,18 @@ export default {
                 .catch(error => {
                     console.log(error)
                 })
+        },
+        cerrarModal() {
+            this.$emit("modalCerrado", true);
+        }
+    },
+    watch: {
+        reload: {
+            // the callback will be called immediately after the start of the observation
+            immediate: true,
+            handler (val, oldVal) {
+                this.show();
+            }
         }
     }
 }
@@ -87,7 +99,7 @@ export default {
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel"> Formulario </h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" @click="cerrarModal()"></button>
                         </div>
                         <div class="modal-body">
                             <div class="table-responsive">
@@ -119,7 +131,7 @@ export default {
                                 publicación </button>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Close </button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="cerrarModal()"> Close </button>
                         </div>
                     </div>
                 </div>

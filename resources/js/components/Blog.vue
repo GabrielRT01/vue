@@ -6,15 +6,16 @@ export default {
     data() {
         return {
             blogs: [],
-            id: -1
+            id: -1,
+            reload: false
         }
     },
-    components: { 
+    components: {
         ModalForm,
     },
     mounted() {
         this.show();
-    },  
+    },
     methods: {
         show() {
             axios.get('api/blog')
@@ -38,7 +39,10 @@ export default {
                 .finally(() => {
                     this.show();
                 })
-        }
+        },
+        modalCerrado(val) {
+            this.reload = false;
+        },
     }
 }
 </script>
@@ -62,8 +66,9 @@ export default {
                             <td> {{ blog.title }}</td>
                             <td> {{ blog.content }}</td>
                             <td>
-                                <button type="button" class="btn btn-warning" @click="this.id = blog.id"
-                                    data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <button type="button" class="btn btn-warning"
+                                    @click="this.id = blog.id; this.reload = true" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">
                                     Edit(M)
                                 </button>
                             </td>
@@ -94,6 +99,6 @@ export default {
             </router-link>
         </div>
 
-        <ModalForm v-bind:id="this.id"></ModalForm>
+        <ModalForm v-bind:id="this.id" v-bind:reload="this.reload" v-on:modalCerrado="modalCerrado"></ModalForm>
     </div>
 </template>
